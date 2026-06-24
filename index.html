@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #eef;
+        }
+        
+        .kanban-board {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .column {
+            flex: 1;
+            background: #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 400px;
+        }
+        
+        .task-card {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="kanban-board">
+        <div class="column" id="pending">
+            <h3>Pending</h3>
+        </div>
+        <div class="column" id="in-progress">
+            <h3>In Progress</h3>
+        </div>
+        <div class="column" id="done">
+            <h3>Done</h3>
+        </div>
+    </div>
+
+    <script>
+        // Fetch and render tasks
+        fetch('http://127.0.0.1:8000/api/tasks')
+            .then(response => response.json())
+            .then(tasks => {
+                tasks.forEach(task => {
+                    const card = document.createElement('div');
+                    card.className = 'task-card';
+                    card.innerHTML = `<strong>${task.title}</strong><p>${task.description}</p>`;
+
+                    // Route to column based on status
+                    const colId = task.status === 'pending' ? 'pending' : (task.status === 'done' ? 'done' : 'in-progress');
+                    document.getElementById(colId).appendChild(card);
+                });
+            });
+    </script>
+
+</body>
+
+</html>

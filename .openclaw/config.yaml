@@ -1,3 +1,0 @@
-model:
-  name: "llama3.1:latest"
-  context_length: 65536
