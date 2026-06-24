@@ -1,0 +1,44 @@
+{
+    "commands": {
+        "ownerAllowFrom": ["slack:U0BD2LNCZK2"]
+    },
+    "plugins": {
+        "entries": {
+            "slack": { "enabled": true },
+            "google": { "enabled": false },
+            "ollama": { "enabled": true }
+        }
+    },
+    "channels": {
+        "slack": {
+            "enabled": true,
+            "botToken": "REMOVED_FOR_SECURITY",
+            "appToken": "REMOVED_FOR_SECURITY",
+            "channels": {
+                "C0BC22A75M1": { "enabled": true },
+                "C0BC8CT6N0J": { "enabled": true },
+                "C0BCC24FP2Q": { "enabled": true }
+            }
+        }
+    },
+    "models": {
+        "providers": {
+            "ollama": {
+                "api": "openai-chatgpt-responses",
+                "baseUrl": "http://localhost:11434/v1",
+                "models": [{ "id": "qwen2.5-coder", "name": "qwen2.5-coder" }]
+            }
+        }
+    },
+    "gateway": {
+        "auth": { "mode": "token", "token": "REMOVED_FOR_SECURITY" },
+        "mode": "local",
+        "port": 18789,
+        "nodes": {
+            "denyCommands": ["tts", "web_fetch", "web_search"]
+        }
+    },
+    "tools": {
+        "profile": "full"
+    }
+}
